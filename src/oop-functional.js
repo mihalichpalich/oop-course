@@ -1,10 +1,13 @@
+const WATER_HEAT_CAPACITY = 4200;
+
 class CoffeeMachine {
   constructor(power) {
     this.waterAmount = 0;
+    this.power = power;
   }
 
   getBoilTime() {
-    return 1000; // точная формула расчета будет позже
+    return this.waterAmount * WATER_HEAT_CAPACITY * 80 / this.power;
   }
 
   onReady() {
@@ -16,7 +19,9 @@ class CoffeeMachine {
   }
 }
 
-let coffeeMachine = new CoffeeMachine(100);
+let coffeeMachine = new CoffeeMachine(100000);
 coffeeMachine.waterAmount = 200;
+
+//console.log(coffeeMachine.power);
 
 coffeeMachine.run();
