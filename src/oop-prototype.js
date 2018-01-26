@@ -1,19 +1,42 @@
 let animal = {
-  eats: true
+  eats: true,
 };
 
-let rabbit = {
-  jumps: true,
-  __proto__: animal
-};
-
-for (let key in rabbit) {
-  if (!rabbit.hasOwnProperty(key)) continue; // пропустить "не свои" свойства
-  //console.log(`${key} = ${rabbit[key]}`); // выводит только "jumps"
+function Rabbit(name) {
+  this.name = name;
+  //console.log(name);
 }
 
-var data = Object.create(null);
-data.text = "Привет";
+Rabbit.prototype = {
+  jumps: true,
+  constructor: Rabbit
+};
 
-console.log(data.text);
-console.log(data.toString);
+Rabbit.prototype.meows = false;
+
+let rabbit = new Rabbit("Кроль");
+
+//console.log(rabbit.meows);
+
+let rabbit2 = new rabbit.constructor("Крольчиха");
+
+
+//menu
+
+var options = {
+  width: 100,
+  height: 200
+};
+
+function Menu(options) {
+  options = Object.create(options);
+  options.width = 300;
+
+  console.log(`width: ${options.width}`); // возьмёт width из наследника
+  console.log(`height: ${options.height}`); // возьмёт height из исходного объекта
+}
+
+var menu = new Menu(options);
+
+console.log(`original width: ${options.width}`); // width исходного объекта
+console.log(`original height: ${options.height}`); // height исходного объекта
