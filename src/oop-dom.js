@@ -1,15 +1,31 @@
 class Rectangle {
   constructor(width, height) {
-    var elem = document.createElement('div');
+    this._elem = document.createElement('div');
 
-    elem.style.width = width + 'px';
-    elem.style.height = height + 'px';
-    elem.style.border = `1px solid red`;
+    this.setWidth(width);
+    this.setHeight(height);
 
-    document.body.appendChild(elem);
+    this._elem.style.border = `1px solid red`;
+
+    document.body.appendChild(this._elem);
   }
 
+  setWidth(width) {
+    this._elem.style.width = width + 'px';
+  }
+
+  setHeight(height) {
+    this._elem.style.height = height + 'px';
+  }
+
+  getWidth(width) {
+    return this._elem.style.width;
+  }
 }
 
-var elem1 = new Rectangle(100, 150);
-var elem2 = new Rectangle(150, 100);
+let elem1 = new Rectangle(100, 150);
+elem1.setWidth(300);
+elem1.setHeight(300);
+console.log(elem1.getWidth());
+
+let elem2 = new Rectangle(150, 100);
