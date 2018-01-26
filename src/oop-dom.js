@@ -1,18 +1,15 @@
-class Elem {
-  constructor(selector) {
-    this.elem = document.querySelector(selector);
+class Rectangle {
+  constructor(width, height) {
+    var elem = document.createElement('div');
+
+    elem.style.width = width + 'px';
+    elem.style.height = height + 'px';
+    elem.style.border = `1px solid red`;
+
+    document.body.appendChild(elem);
   }
 
-  html(text) {
-    this.elem.innerHTML = text;
-    return this;
-  }
-
-  attr(name, value) {
-    this.elem.setAttribute(name, value);
-    return this;
-  }
 }
 
-var elem = new Elem("#test");
-elem.html("!").attr('title', 'привет').attr('class', 'www');
+var elem1 = new Rectangle(100, 150);
+var elem2 = new Rectangle(150, 100);
